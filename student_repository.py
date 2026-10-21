@@ -21,3 +21,7 @@ class StudentRepository:
 
     def get_all(self, db: Session):
         return db.query(Student).all()
+
+    def delete_student(self, db: Session, student: Student):
+        db.delete(student)
+        db.commit
