@@ -7,6 +7,10 @@ from sqlalchemy.orm import Session
 
 routers = APIRouter(prefix="/students",tags=["Student"])
 
+@routers.get("/list")
+def get_all(db: Session = Depends(get_db)):
+     service = StudentService()
+     return service.get_all_students(db=db)
 
 @routers.get("/{roll}", status_code= status.HTTP_200_OK)
 def get_student_by_roll(roll: str, db:Session = Depends(get_db)):
@@ -23,9 +27,6 @@ def update_student(roll: str, update_student: StudentUpdateRequest, db:Session =
      service = StudentService()
      return service.update_student(db, update_student, roll)
 
-@routers.get("/list")
-def get_all(db: Session = Depends(get_db)):
-     service = StudentService()
-     return service.get_all_students(db=db)
+
 
 
