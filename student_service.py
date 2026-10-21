@@ -9,9 +9,6 @@ class StudentService:
     def __init__(self):
         self.repository = StudentRepository()
 
-    def get_all_students(self, db: Session):
-        result = self.repository.get_all_students(db)
-        return result
 
     def get_student_by_roll(self, db: Session, roll: str):
         return self.repository.get_student_by_roll(db, roll)
@@ -33,5 +30,8 @@ class StudentService:
                             session = student_payload.session,
                             department = student_payload.department)
         return self.repository.create_student(db,student)
+
+    def get_all_students(self, db: Session):
+        return self.repository.get_all(db=db)
 
 

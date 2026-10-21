@@ -18,6 +18,6 @@ class StudentRepository:
         db.commit()
         db.refresh(student)
         return student
-    
-    def get_all_students(self, db: Session):
+
+    def get_all(self, db: Session):
         return db.query(Student).all()
