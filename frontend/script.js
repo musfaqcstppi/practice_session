@@ -1,7 +1,7 @@
 // =========================
 // API URL (Change this)
 // =========================
-const API_URL = "https://practice-session-u3uy.onrender.com";
+const API_URL = "https://practice-session-uoiq.onrender.com";
 const STUDENTS_URL = `${API_URL}/students/`;
 
 // =========================
@@ -42,7 +42,7 @@ async function loadStudents() {
     refreshBtn.disabled = true;
     studentTable.innerHTML = `
         <tr>
-            <td colspan="6">Loading students...</td>
+            <td colspan="7">Loading students...</td>
         </tr>
     `;
 
@@ -61,7 +61,7 @@ async function loadStudents() {
         if (students.length === 0) {
             studentTable.innerHTML = `
                 <tr>
-                    <td colspan="6">No students found.</td>
+                    <td colspan="7">No students found.</td>
                 </tr>
             `;
             return;
