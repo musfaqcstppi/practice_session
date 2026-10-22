@@ -118,16 +118,16 @@
             <div class="form-grid">
                 <input
                     type="text"
-                    id="name"
-                    placeholder="Student Name"
+                    id="first_name"
+                    placeholder="Student first Name"
                     maxlength="100"
                     required
                 >
 
                 <input
-                    type="email"
-                    id="email"
-                    placeholder="Email Address (e.g. exemple@exem.com)"
+                    type="text"
+                    id="last_name"
+                    placeholder="Student last Name"
                     maxlength="100"
                     required
                 >
@@ -141,9 +141,17 @@
                 >
 
                 <input
+                    type="text"
+                    id="roll"
+                    placeholder="Roll"
+                    maxlength="100"
+                    required
+                >
+
+                <input
                     type="number"
-                    id="age"
-                    placeholder="Age"
+                    id="session"
+                    placeholder="Session"
                     min="1"
                     step="1"
                     required
@@ -181,17 +189,18 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
                         <th>Department</th>
-                        <th>Age</th>
+                        <th>Roll</th>
+                        <th>Session</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
 
                 <tbody id="studentTable">
                     <tr>
-                        <td colspan="6">Loading students...</td>
+                        <td colspan="7">Loading students...</td>
                     </tr>
                 </tbody>
             </table>

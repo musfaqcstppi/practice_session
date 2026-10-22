@@ -1,7 +1,7 @@
 // =========================
 // API URL (Change this)
 // =========================
-const API_URL = "https://fastapi-student-management.onrender.com";
+const API_URL = "https://practice-session-u3uy.onrender.com/";
 const STUDENTS_URL = `${API_URL}/students/`;
 
 // =========================
@@ -12,10 +12,11 @@ const studentTable = document.getElementById("studentTable");
 const message = document.getElementById("message");
 
 const studentIdInput = document.getElementById("studentId");
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
-const departmentInput = document.getElementById("department");
-const ageInput = document.getElementById("age");
+const firstName = document.getElementById("first_name");
+const lastName = document.getElementById("last_name");
+const department = document.getElementById("department");
+const roll = document.getElementById("roll");
+const session = document.getElementById("session");
 
 const formTitle = document.getElementById("formTitle");
 const submitBtn = document.getElementById("submitBtn");
@@ -70,11 +71,12 @@ async function loadStudents() {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-                <td>${student.student_id}</td>
-                <td>${student.name}</td>
-                <td>${student.email}</td>
+                <td>${student.id}</td>
+                <td>${student.first_name}</td>
+                <td>${student.last_name}</td>
                 <td>${student.department}</td>
-                <td>${student.age}</td>
+                <td>${student.session}</td>
+                <td>${student.roll}</td>
                 <td>
                     <button class="edit">Edit</button>
                     <button class="delete">Delete</button>
@@ -85,7 +87,7 @@ async function loadStudents() {
                 .addEventListener("click", () => editStudent(student));
 
             row.querySelector(".delete")
-                .addEventListener("click", () => deleteStudent(student.student_id));
+                .addEventListener("click", () => deleteStudent(student.roll));
 
             studentTable.appendChild(row);
         });
@@ -107,11 +109,12 @@ async function loadStudents() {
 // Edit Student
 // =========================
 function editStudent(student) {
-    studentIdInput.value = student.student_id;
-    nameInput.value = student.name;
-    emailInput.value = student.email;
-    departmentInput.value = student.department;
-    ageInput.value = student.age;
+    studentIdInput.value = student.id;
+    firstName.value = student.first_name;
+    lastName.value = student.last_name;
+    department.value = student.department;
+    session.value = student.session;
+    roll.value = student.roll
 
     formTitle.textContent = "Update Student";
     submitBtn.textContent = "Update Student";
@@ -151,27 +154,24 @@ form.addEventListener("submit", async (event) => {
     const id = studentIdInput.value;
 
     const student = {
-        name: nameInput.value.trim(),
-        email: emailInput.value.trim(),
-        department: departmentInput.value.trim(),
-        age: Number(ageInput.value)
+        first_name: firstName.value.trim(),
+        last_name: lastName.value.trim(),
+        session : Number(session.value.trim()),
+        department: department.value.trim(),
+        roll: roll.value
     };
 
-    if (!student.name || !student.email || !student.department) {
+    if (!student.first_name || !student.department || !student.roll) {
         message.textContent = "Please fill all fields.";
         return;
     }
 
-    if (student.age <= 0) {
-        message.textContent = "Invalid age.";
-        return;
-    }
 
     const url = id
-        ? `${STUDENTS_URL}${id}`
-        : STUDENTS_URL;
+        ? `${STUDENTS_URL}`+'update/'+`${roll}`
+        : STUDENTS_URL+'create';
 
-    const method = id ? "PUT" : "POST";
+    const method = id ? "PATCH" : "POST";
 
     submitBtn.disabled = true;
     message.textContent = id
@@ -209,13 +209,13 @@ form.addEventListener("submit", async (event) => {
 // =========================
 // DELETE Student
 // =========================
-async function deleteStudent(id) {
+async function deleteStudent(roll) {
 
-    if (!confirm(`Delete student ${id}?`))
+    if (!confirm(`Delete student ${roll}?`))
         return;
 
     try {
-        const response = await fetch(`${STUDENTS_URL}${id}`, {
+        const response = await fetch(`${STUDENTS_URL}${roll}`, {
             method: "DELETE"
         });
 

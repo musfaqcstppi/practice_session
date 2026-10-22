@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 routers = APIRouter(prefix="/students",tags=["Student"])
 
-@routers.get("/list")
+@routers.get("/")
 def get_all(db: Session = Depends(get_db)):
      service = StudentService()
      return service.get_all_students(db=db)
