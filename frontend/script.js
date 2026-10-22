@@ -168,7 +168,7 @@ form.addEventListener("submit", async (event) => {
 
 
     const url = id
-        ? `${STUDENTS_URL}`+'update/'+`${roll}`
+        ? `${STUDENTS_URL}`+`update/${roll.value}`
         : STUDENTS_URL+'create';
 
     const method = id ? "PATCH" : "POST";
