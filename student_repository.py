@@ -22,6 +22,8 @@ class StudentRepository:
     def get_all(self, db: Session):
         return db.query(Student).all()
 
-    def delete_student(self, db: Session, student: Student):
-        db.delete(student)
-        db.commit
+    def delete_student(self, db: Session, roll: str):
+        student = db.query(Student).filter(Student.roll == roll).first()
+        if student:
+            db.delete(student)
+            db.commit()

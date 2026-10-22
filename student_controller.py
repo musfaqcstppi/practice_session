@@ -30,7 +30,7 @@ def update_student(roll: str, update_student: StudentUpdateRequest, db:Session =
 @routers.delete("/{roll}")
 def delete_student(roll: str, db: Session = Depends(get_db)):
      service = StudentService()
-     service.delete_student( roll, db)
+     service.delete_student(roll, db)
 
 
 
