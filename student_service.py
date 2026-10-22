@@ -35,9 +35,6 @@ class StudentService:
         return self.repository.get_all(db=db)
 
     def delete_student(self, roll:str, db:Session):
-        student = self.repository.get_student_by_roll(db, roll)
-        if not student:
-            raise HTTPException(status_code=404, detail="Item not found")
         self.repository.delete_student(db, roll)
 
 
